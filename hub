@@ -1,0 +1,414 @@
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+local Players = game:GetService("Players")
+
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+local Workspace = game:GetService("Workspace")
+
+local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local Folder = Instance.new("Folder", Workspace)
+local Part = Instance.new("Part", Folder)
+local Attachment1 = Instance.new("Attachment", Part)
+Part.Anchored = true
+Part.CanCollide = false
+Part.Transparency = 1
+
+local win = DiscordLib:Window("xrwc hub")
+
+local on = {}
+
+local serv = win:Server("Main", "")
+
+local btns = serv:Channel("Games")
+
+btns:Button("Fisch - Speed Hub", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+	DiscordLib:Notification("Notification", "Speed Hub Runned !", "Okay!")
+end)
+
+btns:Seperator()
+
+btns:Button("Breaking Point", function()
+	getgenv().AutoFarm = true
+	getgenv().ServerHop = false
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/2vsh/breakingpoint/main/mainscript.lua'))()
+	DiscordLib:Notification("Notification", "Breaking Point Runned !", "Okay!")
+end)
+
+btns:Seperator()
+
+btns:Button("Azure Lock or Aimbot !", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Actyrn/Scripts/main/AzureModded"))()
+	DiscordLib:Notification("Notification", "Azure Lock Runned !", "Okay!")
+end)
+
+btns:Seperator()
+
+btns:Button("Void Fishing", function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/xajBq0dk"))()
+	DiscordLib:Notification("Notification", "Void Fishing Runned !", "Okay!")
+end)
+
+btns:Seperator()
+
+btns:Button("Void Fishing - Demonic Hub", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Prosexy/Demonic-HUB-V2/main/DemonicHub_V2.lua", true))()
+	DiscordLib:Notification("Notification", "Void Fishing - Demonic Hub Runned !", "Okay!")
+end)
+
+btns:Seperator()
+
+btns:Button("Muscle Legends", function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/xajBq0dk"))()
+	DiscordLib:Notification("Notification", "Muscle Legends Runned !", "Okay!")
+end)
+
+local mvsd = serv:Channel("MVSD")
+
+mvsd:Button("Hitbox Expender", function()
+	local HitboxExpander = Instance.new("ScreenGui")
+	local HitboxFrame = Instance.new("Frame")
+	local TextLabel = Instance.new("TextLabel")
+	local Expand = Instance.new("TextButton")
+	local CanCollide = Instance.new("TextButton")
+	local TextBox = Instance.new("TextBox")
+	local Players = game:GetService("Players")
+	local Lp = Players.LocalPlayer
+
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "Made By xrwc",
+		Text = "May not work on some games",
+		Icon = "rbxassetid://17682701167"
+	})
+
+	HitboxExpander.Name = "Hitbox Expander"
+	HitboxExpander.Parent = game:GetService("CoreGui")
+	HitboxExpander.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	HitboxFrame.Name = "Hitbox Frame"
+	HitboxFrame.Parent = HitboxExpander
+	HitboxFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+	HitboxFrame.BorderColor3 = Color3.new(0, 0, 0)
+	HitboxFrame.BorderSizePixel = 0
+	HitboxFrame.Position = UDim2.new(0.203580201, 0, 0.523809552, 0)
+	HitboxFrame.Size = UDim2.new(0, 193, 0, 216)
+
+	TextLabel.Parent = HitboxFrame
+	TextLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+	TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+	TextLabel.BorderSizePixel = 0
+	TextLabel.Size = UDim2.new(0, 192, 0, 50)
+	TextLabel.Font = Enum.Font.ArialBold
+	TextLabel.Text = "Hitbox Expander"
+	TextLabel.TextColor3 = Color3.new(1, 1, 1)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14
+	TextLabel.TextStrokeColor3 = Color3.new(1, 1, 1)
+	TextLabel.TextWrapped = true
+
+	Expand.Name = "Expand"
+	Expand.Parent = HitboxFrame
+	Expand.BackgroundColor3 = Color3.new(1, 1, 1)
+	Expand.BorderColor3 = Color3.new(0, 0, 0)
+	Expand.BorderSizePixel = 0
+	Expand.Position = UDim2.new(0.0612399243, 0, 0.73983568, 0)
+	Expand.Size = UDim2.new(0, 169, 0, 37)
+	Expand.Font = Enum.Font.SourceSansBold
+	Expand.Text = "Expand"
+	Expand.TextColor3 = Color3.new(0, 0, 0)
+	Expand.TextScaled = true
+	Expand.TextSize = 14
+	Expand.TextWrapped = true
+	Expand.MouseButton1Click:Connect(function()
+		local size = tonumber(TextBox.Text)
+		if not size then
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "Error",
+				Text = "Please enter a valid number",
+				Icon = "rbxassetid://17682701167"
+			})
+			return
+		end
+		_G.HeadSize = size
+		while wait(1) do
+			for _, player in pairs(Players:GetPlayers()) do
+				if player ~= Lp and player.Character then
+					local ht = player.Character:FindFirstChild("HumanoidRootPart")
+					if ht then
+						ht.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+						ht.Transparency = 0.5
+						ht.CanCollide = _G.Toggle
+						ht.Material = Enum.Material.Neon
+						ht.BrickColor = BrickColor.new("Royal purple")
+					end
+				end
+			end
+		end
+	end)
+
+	CanCollide.Name = "CanCollide"
+	CanCollide.Parent = HitboxFrame
+	CanCollide.BackgroundColor3 = Color3.new(1, 1, 1)
+	CanCollide.BorderColor3 = Color3.new(0, 0, 0)
+	CanCollide.BorderSizePixel = 0
+	CanCollide.Position = UDim2.new(0.0621761642, 0, 0.486111104, 0)
+	CanCollide.Size = UDim2.new(0, 169, 0, 37)
+	CanCollide.Font = Enum.Font.SourceSansBold
+	CanCollide.Text = "CanCollide: OFF"
+	CanCollide.TextColor3 = Color3.new(1, 0, 0)
+	CanCollide.TextScaled = true
+	CanCollide.TextSize = 14
+	CanCollide.TextWrapped = true
+	CanCollide.MouseButton1Click:Connect(function()
+		if _G.Toggle == false then
+			_G.Toggle = true
+			CanCollide.TextColor3 = Color3.fromRGB(77, 255, 0)
+			CanCollide.Text = "CanCollide: ON"
+		else
+			_G.Toggle = false
+			CanCollide.TextColor3 = Color3.fromRGB(255, 0, 0)
+			CanCollide.Text = "CanCollide: OFF"
+		end
+	end)
+
+	TextBox.Parent = HitboxFrame
+	TextBox.BackgroundColor3 = Color3.new(1, 1, 1)
+	TextBox.BorderColor3 = Color3.new(0, 0, 0)
+	TextBox.BorderSizePixel = 0
+	TextBox.Position = UDim2.new(0.0569948182, 0, 0.231481478, 0)
+	TextBox.Size = UDim2.new(0, 168, 0, 37)
+	TextBox.Font = Enum.Font.SourceSansBold
+	TextBox.Text = "Enter Size Number Here!"
+	TextBox.TextColor3 = Color3.new(0, 0, 0)
+	TextBox.TextScaled = true
+	TextBox.TextSize = 14
+	TextBox.TextWrapped = true
+
+	-- Drag script for HitboxFrame
+	local UIS = game:GetService('UserInputService')
+	local frame = HitboxFrame
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragStart = nil
+	local startPos = nil
+
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+	end
+
+	frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+
+	UIS.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			if dragToggle then
+				updateInput(input)
+			end
+		end
+	end)
+
+	Players.PlayerAdded:Connect(function(player)
+		player.CharacterAdded:Connect(function(character)
+			wait(1)
+			if player ~= Lp then
+				local ht = character:FindFirstChild("HumanoidRootPart")
+				if ht then
+					ht.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+					ht.Transparency = 0.5
+					ht.CanCollide = _G.Toggle
+					ht.Material = Enum.Material.Neon
+					ht.BrickColor = BrickColor.new("Royal purple")
+				end
+			end
+		end)
+	end)
+
+	for _, player in pairs(Players:GetPlayers()) do
+		player.CharacterAdded:Connect(function(character)
+			wait(1)
+			if player ~= Lp then
+				local ht = character:FindFirstChild("HumanoidRootPart")
+				if ht then
+					ht.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+					ht.Transparency = 0.5
+					ht.CanCollide = _G.Toggle
+					ht.Material = Enum.Material.Neon
+					ht.BrickColor = BrickColor.new("Royal purple")
+				end
+			end
+		end)
+	end
+end)
+
+--local nd = serv:Channel("Natural Disaster")
+
+--if not getgenv().Network then
+--	getgenv().Network = {
+--		BaseParts = {},
+--		Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424)
+--	}
+
+--	Network.RetainPart = function(Part)
+--		if typeof(Part) == "Instance" and Part:IsA("BasePart") and Part:IsDescendantOf(Workspace) then
+--			table.insert(Network.BaseParts, Part)
+--			Part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+--			Part.CanCollide = false
+--		end
+--	end
+
+--	local function EnablePartControl()
+--		LocalPlayer.ReplicationFocus = Workspace
+--		RunService.Heartbeat:Connect(function()
+--			sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+--			for _, Part in pairs(Network.BaseParts) do
+--				if Part:IsDescendantOf(Workspace) then
+--					Part.Velocity = Network.Velocity
+--				end
+--			end
+--		end)
+--	end
+
+--	EnablePartControl()
+--end
+
+--local function ForcePart(v)
+--	if v:IsA("Part") and not v.Anchored and not v.Parent:FindFirstChild("Humanoid") and not v.Parent:FindFirstChild("Head") and v.Name ~= "Handle" then
+--		for _, x in next, v:GetChildren() do
+--			if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
+--				x:Destroy()
+--			end
+--		end
+--		if v:FindFirstChild("Attachment") then
+--			v:FindFirstChild("Attachment"):Destroy()
+--		end
+--		if v:FindFirstChild("AlignPosition") then
+--			v:FindFirstChild("AlignPosition"):Destroy()
+--		end
+--		if v:FindFirstChild("Torque") then
+--			v:FindFirstChild("Torque"):Destroy()
+--		end
+--		v.CanCollide = false
+--		local Torque = Instance.new("Torque", v)
+--		Torque.Torque = Vector3.new(100000, 100000, 100000)
+--		local AlignPosition = Instance.new("AlignPosition", v)
+--		local Attachment2 = Instance.new("Attachment", v)
+--		Torque.Attachment0 = Attachment2
+--		AlignPosition.MaxForce = 9999999999999999
+--		AlignPosition.MaxVelocity = math.huge
+--		AlignPosition.Responsiveness = 200
+--		AlignPosition.Attachment0 = Attachment2
+--		AlignPosition.Attachment1 = Attachment1
+--	end
+--end
+
+--nd:Toggle("Black Hole (doesnt work)",false, function(bool)
+--	if bool then
+--		for _, v in next, Workspace:GetDescendants() do
+--			ForcePart(v)
+--		end
+
+--		Workspace.DescendantAdded:Connect(function(v)
+--			if blackHoleActive then
+--				ForcePart(v)
+--			end
+--		end)
+
+--		spawn(function()
+--			while blackHoleActive and RunService.RenderStepped:Wait() do
+--				Attachment1.WorldCFrame = humanoidRootPart.CFrame
+--			end
+--		end)
+--	end
+--end)
+
+--nd:Seperator()
+
+--nd:Button("Jerk Off Tool", function()
+--	loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+--	DiscordLib:Notification("Notification", "Jerk Off Tool Runned !", "Okay!")
+--end)
+
+local Unjug = serv:Channel("Undertale Games")
+
+Unjug:Button("UnwaveringSoul", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Keparetiolpxe/rbxscript/main/UnwaveringSoulV1.5"))()
+	DiscordLib:Notification("Notification", "UnwaveringSoul Runned !", "Okay!")
+end)
+
+Unjug:Seperator()
+
+Unjug:Button("Sans VS Chara", function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/SBuCBqjM"))()
+	DiscordLib:Notification("Notification", "UnwaveringSoul Runned !", "Okay!")
+end)
+
+
+--local sldrs = serv:Channel("Sliders")
+
+--local sldr = sldrs:Slider("Slide me!", 0, 1000, 400, function(t)
+--	print(t)
+--end)
+
+--sldrs:Button("Change to 50", function()
+--	sldr:Change(50)
+--end)
+
+--local drops = serv:Channel("Dropdowns")
+
+
+--local drop = drops:Dropdown("Pick me!",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(bool)
+--	print(bool)
+--end)
+
+--drops:Button("Clear", function()
+--	drop:Clear()
+--end)
+
+--drops:Button("Add option", function()
+--	drop:Add("Option")
+--end)
+
+--local clrs = serv:Channel("Colorpickers")
+
+--clrs:Colorpicker("ESP Color", Color3.fromRGB(255,1,1), function(t)
+--	print(t)
+--end)
+
+--local textbs = serv:Channel("Textboxes")
+
+--textbs:Textbox("Gun power", "Type here!", true, function(t)
+--	print(t)
+--end)
+
+--local lbls = serv:Channel("Labels")
+
+--lbls:Label("This is just a label.")
+
+--local bnds = serv:Channel("Binds")
+
+--bnds:Bind("Kill bind", Enum.KeyCode.RightShift, function()
+--	print("Killed everyone!")
+--end)
+
+
+local Serv2 = win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
+
+local Creds = serv:Channel("Credits")
+
+Creds:Label("This script was made by @xrwconds and @kzoo")
+Creds:Label("If you want more scripts follow @xrwconds on roblox !")
+
